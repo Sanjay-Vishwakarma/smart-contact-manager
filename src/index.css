@@ -1,7 +1,6 @@
 body {
-    background: linear-gradient(to right, #4b6cb7, #182848); /* Gradient background */
-  margin-top: 2px;
-  margin: 0;
+  background: grey;
+  /* background: linear-gradient(90deg, rgba(2,0,36,0.8895891120119923) 0%, rgba(54,187,66,0.7663398122921043) 35%, rgba(0,101,255,0.8811857506674545) 100%); margin: 0; */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
