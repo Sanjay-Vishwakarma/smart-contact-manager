@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
-  background-color: #386A9B;
+  background-color:  #555555;
   z-index: var(--z-fixed);
   transition: .5s
 }
@@ -60,7 +60,7 @@
   left: -30%;
   width: var(--nav-width);
   height: 100vh;
-  background-color: #041028;
+  background-color: #232E44;
   padding: .5rem 1rem 0 0;
   transition: .5s;
   z-index: var(--z-fixed)

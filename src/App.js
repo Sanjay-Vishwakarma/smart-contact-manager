@@ -10,23 +10,27 @@ import { Routes, Route } from 'react-router-dom';
 import { Contact } from './components/pages/Contact';
 import ViewContactList from './components/pages/ViewContactList';
 import Sidebar from './components/layout/Sidebar';
+import UpdateContact from './components/pages/UpdateContact';
 
 function App() {
   const [showNav, setShowNav] = useState(true); // State to manage sidebar visibility
 
   return (
     <div className="App">
-      {/* <Navbar /> */}
-      <Sidebar showNav={showNav} /> {/* Pass showNav state to Sidebar component */}
+      <Navbar />
+      <Sidebar showNav={showNav} /> 
+      {/* Pass showNav state to Sidebar component */}
+      
       <div className={`container body-area${showNav ? ' body-pd' : ''}`}>
         <Routes>
-          {/* <Route exact path="/" element={<WelcomePage />} /> */}
           <Route exact path="/" element={<WelcomePage />} />
+          <Route exact path="/navbar" element={<Navbar />} />
           <Route exact path="/home" element={<HomePage />} />
           <Route exact path="/about" element={<AboutPage />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/contact" element={<Contact />} />
+          <Route exact path="/edit/:id" element={<UpdateContact />} />
           <Route exact path="/contact-list" element={<ViewContactList />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

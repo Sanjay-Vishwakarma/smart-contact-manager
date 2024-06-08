@@ -7,7 +7,7 @@
 }
 .container-contacts{
     margin-top: 5%;
-    display: flex;
+    display: block ruby;
   justify-content: center;
   align-items: center;
 }

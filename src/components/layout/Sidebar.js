@@ -17,7 +17,7 @@ function Sidebar() {
                 </div>
                 <div className="header_img">
                     <img
-                        src="https://scontent.fbom48-1.fna.fbcdn.net/v/t39.30808-1/394194183_2449350908590882_8705133710004172455_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=sgU9cGJcmL4Q7kNvgFg_KDb&_nc_ht=scontent.fbom48-1.fna&oh=00_AfCQ7nsdTYArV4AQBYsYOe6VxgIWhsOqgoJSbsnUqMMtOg&oe=6635B8A2"
+                        src="https://scontent.fbom48-1.fna.fbcdn.net/v/t39.30808-1/394194183_2449350908590882_8705133710004172455_n.jpg?stp=dst-jpg_p200x200&_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_ohc=eu0DomQTuvYQ7kNvgGgwacV&_nc_ht=scontent.fbom48-1.fna&oh=00_AYAnq8UjeRmCGLz93SRl12ODpfBBhlNLsyMqMAVcV0JHsw&oe=6658A862"
                         alt="Clue Mediator" />
                 </div>
             </header>
@@ -30,7 +30,7 @@ function Sidebar() {
                         </Link>
                         <div className="nav_list">
                             <Link to="/contact" className="nav_link">
-                                <i className='bi bi-envelope nav_icon' /><span className="nav_name">Contact</span>
+                                <i className='bi bi-envelope nav_icon' /><span className="nav_name">Add Contact</span>
                             </Link>
                             <Link to="/contact-list" className="nav_link">
                                 <i className='bi bi-list nav_icon' /><span className="nav_name">Contact List</span>
