@@ -3,7 +3,6 @@ import axios from 'axios';
 import { toast, ToastContainer, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/login.css';
 
 const Login = ({ setIsLoggedIn }) => {
     const [username, setUsername] = useState('');
@@ -58,32 +57,27 @@ const Login = ({ setIsLoggedIn }) => {
     };
 
     return (
-        <div className="login-container">
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3 row">
-                    <label htmlFor="inputUsername" className="col-sm-4 col-form-label">
-                        Username
-                    </label>
-                    <div className="col-sm-10">
-                        <input type="text" value={username} className="form-control" id="inputUsername" onChange={(e) => setUsername(e.target.value)} required />
+        <div className="container mt-5">
+            <div className="row justify-content-center">
+                <div className="col-md-4">
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title text-center mb-4">Login</h5>
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-3">
+                                    <label htmlFor="inputUsername" className="form-label">Username</label>
+                                    <input type="text" className="form-control" id="inputUsername" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="inputPassword" className="form-label">Password</label>
+                                    <input type="password" className="form-control" id="inputPassword" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                                </div>
+                                <button type="submit" className="btn btn-primary d-block mx-auto">Login</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div className="mb-3 row">
-                    <label htmlFor="inputPassword" className="col-sm-4 col-form-label">
-                        Password
-                    </label>
-                    <div className="col-sm-10">
-                        <input type="password" value={password} className="form-control" id="inputPassword" onChange={(e) => setPassword(e.target.value)} required />
-                    </div>
-                </div>
-                <div className="mb-3 row">
-                    <div className="col-sm-10">
-                        <button type="submit" className="btn btn-primary">
-                            Login
-                        </button>
-                    </div>
-                </div>
-            </form>
+            </div>
             <ToastContainer
                 position="top-left"
                 autoClose={5000}

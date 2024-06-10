@@ -28,7 +28,7 @@ const SignOut = ({ setIsLoggedIn }) => {
         // Redirect to home page after signing out
         setTimeout(() => {
             navigate('/');
-        }, 1000);
+        }, 500);
     }, [navigate, setIsLoggedIn]);
 
     return (

@@ -4,12 +4,7 @@ import { toast, ToastContainer, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
-
-import '../../styles/signup.css';
-
-export default function Signup() {
-
-
+const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -56,77 +51,38 @@ export default function Signup() {
             setError('There was an error creating the user.');
             setSuccess(null);
         }
-
     };
 
     return (
-        <div className="signup-container">
-            <form onSubmit={handleSubmit}>
-                <div className="mb-3 row">
-                    <label htmlFor="inputFirstName" className="col-sm-2 col-form-label">
-                        Name
-                    </label>
-                    <div className="col-sm-4">
-                        <input type="text" value={name} className="form-control" onChange={(e) => setName(e.target.value)} required />
-                    </div>
-
-                    <label htmlFor="inputLastName" className="col-sm-2 col-form-label">
-                        Email
-                    </label>
-                    <div className="col-sm-4">
-                        <input type="email" value={email} className="form-control" onChange={(e) => setEmail(e.target.value)} required />
-                    </div>
-                </div>
-
-                <div className="mb-3 row">
-                    <label htmlFor="inputEmail" className="col-sm-2 col-form-label">
-                        Username
-                    </label>
-                    <div className="col-sm-4">
-                        <input type="text" value={username} className="form-control" onChange={(e) => setUsername(e.target.value)} required />
-                    </div>
-
-                    <label htmlFor="inputPhone" className="col-sm-2 col-form-label">
-                        Password
-                    </label>
-                    <div className="col-sm-4">
-                        <input type="password" value={password} className="form-control" onChange={(e) => setPassword(e.target.value)} required />
+        <div className="container mt-5">
+            <div className="row justify-content-center">
+                <div className="col-md-4">
+                    <div className="card">
+                        <div className="card-body">
+                            <h5 className="card-title text-center mb-4">Sign Up</h5>
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-3">
+                                    <label htmlFor="inputName" className="form-label">Name</label>
+                                    <input type="text" className="form-control" id="inputName" value={name} onChange={(e) => setName(e.target.value)} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="inputEmail" className="form-label">Email</label>
+                                    <input type="email" className="form-control" id="inputEmail" value={email} onChange={(e) => setEmail(e.target.value)} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="inputUsername" className="form-label">Username</label>
+                                    <input type="text" className="form-control" id="inputUsername" value={username} onChange={(e) => setUsername(e.target.value)} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="inputPassword" className="form-label">Password</label>
+                                    <input type="password" className="form-control" id="inputPassword" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                                </div>
+                                <button type="submit" className="btn btn-primary d-block mx-auto">Sign Up</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-
-                {/* <div className="mb-3 row">
-                    <label htmlFor="inputCity" className="col-sm-2 col-form-label">
-                        City
-                    </label>
-                    <div className="col-sm-4">
-                        <input type="text" className="form-control" id="inputCity" />
-                    </div>
-
-                    <label htmlFor="inputUsername" className="col-sm-2 col-form-label">
-                        Username
-                    </label>
-                    <div className="col-sm-4">
-                        <input type="text" className="form-control" id="inputUsername" />
-                    </div>
-                </div> */}
-
-                {/* <div className="mb-3 row">
-                    <label htmlFor="inputPassword" className="col-sm-2 col-form-label">
-                        Password
-                    </label>
-                    <div className="col-sm-4">
-                        <input type="password" className="form-control" id="inputPassword" />
-                    </div>
-                </div> */}
-
-                <div className="mb-3 row">
-                    <div className="col-sm-10 offset-sm-2">
-                        <button type="submit" className="btn btn-primary">
-                            Sign Up
-                        </button>
-                    </div>
-                </div>
-            </form>
+            </div>
             <ToastContainer
                 position="top-left"
                 autoClose={5000}
@@ -144,4 +100,4 @@ export default function Signup() {
     );
 };
 
-
+export default Signup;
