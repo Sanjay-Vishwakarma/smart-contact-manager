@@ -1,16 +1,18 @@
-// src/components/pages/SignOut.js
-
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const SignOut = () => {
+const SignOut = ({ setIsLoggedIn }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Clear user data from localStorage or cookies
-        localStorage.removeItem('user'); // Adjust based on your authentication method
+        // Clear uid from localStorage
+        localStorage.removeItem('uid');
+
+        // Update login status
+        setIsLoggedIn(false);
+
         toast.success('Successfully signed out!', {
             position: "top-left",
             autoClose: 5000,
@@ -23,11 +25,11 @@ const SignOut = () => {
             transition: Bounce,
         });
 
-        // Redirect to login page after signing out
+        // Redirect to home page after signing out
         setTimeout(() => {
             navigate('/');
-        }, 2000);
-    }, [navigate]);
+        }, 1000);
+    }, [navigate, setIsLoggedIn]);
 
     return (
         <div>
