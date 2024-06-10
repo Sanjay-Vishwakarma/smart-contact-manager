@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -6,7 +6,7 @@ import axios from 'axios';
 import { toast, ToastContainer, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const Contact = () => {
+const Contact = () => {
     const contactContainerStyle = {
         display: 'flex',
         flexDirection: 'column',
@@ -26,14 +26,37 @@ export const Contact = () => {
     const [description, setDescription] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
+    const [uid, setUid] = useState('');
+
+    useEffect(() => {
+        const storedUid = localStorage.getItem('uid');
+        console.log("cont  uid " + storedUid);
+
+        if (storedUid) {
+            setUid(storedUid);
+        } else {
+            // Handle the case where uid is not available, maybe redirect to login
+            toast.error('User not logged in.', {
+                position: "top-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        }
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const contact = { firstName, lastName, phone, email, description };
+        const contact = { firstName, lastName, phone, email, description, uid };
 
         try {
             const response = await axios.post('http://localhost:9090/contact/addContact', contact);
-            toast.success('User Sign in successfully!', {
+            toast.success('Contact added successfully!', {
                 position: "top-left",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -46,8 +69,9 @@ export const Contact = () => {
             });
             setSuccess('Contact added successfully!');
             setError(null);
+
         } catch (error) {
-            toast.error('There was an error create in  the contact.', {
+            toast.error('There was an error creating the contact.', {
                 position: "top-left",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -130,6 +154,7 @@ export const Contact = () => {
                 transition={Bounce}
             />
         </Box>
-        
     );
 }
+
+export default Contact;

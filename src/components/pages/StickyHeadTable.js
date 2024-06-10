@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, TablePagination, CircularProgress } from '@mui/material';
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, CircularProgress } from '@mui/material';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
 import '../../styles/contact.css';
 
 const ViewContactList = () => {
@@ -14,25 +12,43 @@ const ViewContactList = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const navigate = useNavigate();
-    const { id } = useParams();
+    const location = useLocation();
+    const [uid, setUid] = useState('');
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
     useEffect(() => {
-        console.log("id::::"+id); 
-        const fetchContacts = async () => {
-            try {
-                const response = await axios.get('http://localhost:9090/contact/getAllContacts');
-                setContacts(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching contacts:', error);
-                setLoading(false);
-            }
-        };
-
-        fetchContacts();
+        const storedUid = localStorage.getItem('uid');
+        console.log("cont list uid "+storedUid);
+        if (storedUid) {
+            setUid(storedUid);
+            fetchContacts(storedUid);
+        } else {
+            // Handle the case where uid is not available, maybe redirect to login
+            toast.error('User not logged in.', {
+                position: "top-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Bounce,
+            });
+        }
     }, []);
+
+    const fetchContacts = async (uid) => {
+        try {
+            const response = await axios.get(`http://localhost:9090/contact/getAllContacts/${uid}`);
+            setContacts(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching contacts:', error);
+            setLoading(false);
+        }
+    };
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -43,7 +59,6 @@ const ViewContactList = () => {
         setPage(0); // Reset to first page when changing rows per page
     };
 
-    
     const handleEdit = (id) => {
         navigate(`/edit/${id}`);
     };
@@ -68,7 +83,7 @@ const ViewContactList = () => {
             });
             setSuccess('Contact deleted successfully!');
             setError(null);
-            navigate('/contact-list'); // Redirect to the contact list page after successful deletion
+            fetchContacts(uid); // Reload the contact list after successful deletion
         } catch (error) {
             toast.error('There was an error deleting the contact.', {
                 position: "top-left",
@@ -84,11 +99,8 @@ const ViewContactList = () => {
             setError('There was an error deleting the contact.');
             setSuccess(null);
             console.error('Error deleting contact:', error);
-            // Handle error
         }
     };
-
-
 
     return (
         <div className='container-contacts'>
@@ -136,28 +148,19 @@ const ViewContactList = () => {
                             </TableBody>
                         </Table>
                     </TableContainer>
-                    {/* <TablePagination
-                        rowsPerPageOptions={[ 10, 25]}
-                        component="div"
-                        count={contacts.length}
-                        rowsPerPage={rowsPerPage}
-                        page={page}
-                        onPageChange={handleChangePage}
-                        onRowsPerPageChange={handleChangeRowsPerPage}
-                    /> */}
-                        <ToastContainer
-                            position="top-left"
-                            autoClose={5000}
-                            hideProgressBar={false}
-                            newestOnTop={false}
-                            closeOnClick
-                            rtl={false}
-                            pauseOnFocusLoss
-                            draggable
-                            pauseOnHover
-                            theme="light"
-                            transition={Bounce}
-                        />
+                    <ToastContainer
+                        position="top-left"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                        transition={Bounce}
+                    />
                 </>
             )}
         </div>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+
 
 import '../../styles/signup.css';
 
@@ -12,7 +14,7 @@ export default function Signup() {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
     const [userData, setUserData] = useState(null); // State to store the response data
@@ -37,6 +39,8 @@ export default function Signup() {
             });
             setSuccess('User created successfully!');
             setError(null);
+            navigate('/login'); // Redirect to the contact list page after successful deletion
+
         } catch (error) {
             toast.error('There was an error creating the user.', {
                 position: "top-left",
