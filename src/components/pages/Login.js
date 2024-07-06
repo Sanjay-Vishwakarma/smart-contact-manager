@@ -3,10 +3,13 @@ import axios from 'axios';
 import { toast, ToastContainer, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const Login = ({ setIsLoggedIn }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
@@ -35,9 +38,7 @@ const Login = ({ setIsLoggedIn }) => {
             setIsLoggedIn(true);
             localStorage.setItem('uid', uid);
 
-            // Example condition to determine which page to navigate to
             const navigateTo = username === 'admin' ? '/contact-list' : '/contact';
-
             navigate(navigateTo);
 
         } catch (error) {
@@ -56,6 +57,10 @@ const Login = ({ setIsLoggedIn }) => {
         }
     };
 
+    const toggleShowPassword = () => {
+        setShowPassword(prevShowPassword => !prevShowPassword);
+    };
+
     return (
         <div className="container mt-5">
             <div className="row justify-content-center">
@@ -70,7 +75,12 @@ const Login = ({ setIsLoggedIn }) => {
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="inputPassword" className="form-label">Password</label>
-                                    <input type="password" className="form-control" id="inputPassword" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                                    <div className="input-group">
+                                        <input type={showPassword ? "text" : "password"} className="form-control" id="inputPassword" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                                        <button type="button" className="btn btn-outline-secondary" onClick={toggleShowPassword}>
+                                            <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+                                        </button>
+                                    </div>
                                 </div>
                                 <button type="submit" className="btn btn-primary d-block mx-auto">Login</button>
                             </form>

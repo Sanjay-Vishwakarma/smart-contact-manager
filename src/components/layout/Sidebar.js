@@ -34,6 +34,9 @@ function Sidebar() {
                             </Link>
                             <Link to="/contact-list" className="nav_link">
                                 <i className='bi bi-list nav_icon' /><span className="nav_name">Contact List</span>
+                            </Link> 
+                            <Link to="/change-password" className="nav_link">
+                                <i className='bi bi-list nav_icon' /><span className="nav_name">Change password</span>
                             </Link>
                         </div>
                     </div>

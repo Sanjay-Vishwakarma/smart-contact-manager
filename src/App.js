@@ -12,6 +12,7 @@ import ViewContactList from './components/pages/ViewContactList';
 import Sidebar from './components/layout/Sidebar';
 import UpdateContact from './components/pages/UpdateContact';
 import SignOut from './components/pages/SignOut';
+import ChangePassword from './components/pages/ChangePassword';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/logout" element={<SignOut setIsLoggedIn={setIsLoggedIn} />} />
           {/* Redirect to login if not logged in */}
           <Route path="/contact-list" element={isLoggedIn ? <ViewContactList /> : <Navigate to="/login" />} />
+          <Route path="/change-password" element={<ChangePassword/>} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
