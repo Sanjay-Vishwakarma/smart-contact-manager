@@ -1,48 +1,86 @@
-
-
 /* SignupForm.css */
 
+/* Overall container styling */
 .signup-container {
-  margin-top: 5%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #007bff; /* Blue background */
+  padding: 20px;
+}
+
+/* Styling for the image container */
+.image-container {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
+.signup-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
 /* Styling for the form container */
 .signup-form {
-  margin-top: 20px;
-  max-width: 500px; /* Set maximum width for the form */
-  margin: auto; /* Center the form horizontally */
+  flex: 1;
+  max-width: 400px;
+  width: 100%;
   padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* Styling for form labels */
 .signup-form label {
   font-weight: bold;
+  margin-bottom: 5px;
+  display: inline-block;
 }
 
 /* Styling for form inputs */
 .signup-form input {
+  width: 100%;
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 5px;
-  border: 1px solid #ced4da; /* Bootstrap default input border color */
+  border: 1px solid #ced4da;
+  box-sizing: border-box;
 }
 
 /* Styling for the submit button */
 .signup-form button {
-  padding: 10px 20px;
+  width: 100%;
+  padding: 10px;
   border-radius: 5px;
-  background-color: #007bff; /* Bootstrap primary button color */
-  color: #fff; /* Button text color */
+  background-color: #007bff;
+  color: #fff;
   border: none;
   cursor: pointer;
 }
 
 /* Hover effect for the submit button */
 .signup-form button:hover {
-  background-color: #0056b3; /* Darker shade of primary color on hover */
+  background-color: #0056b3;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .signup-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .signup-form {
+    padding: 15px;
+  }
+
+  .image-container {
+    margin-bottom: 20px;
+  }
 }
